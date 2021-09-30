@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {PrincipalComponent} from "./template/principal/principal.component";
+import {ListarSimbolosComponent} from "./listar-simbolos/listar-simbolos.component";
+import {ConverterMoedasComponent} from "./converter-moedas/converter-moedas.component";
+import {ConverterRealDolarComponent} from "./converter-real-dolar/converter-real-dolar.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: PrincipalComponent},
+  {path: 'listar-simbolos', component: ListarSimbolosComponent},
+  {path: 'converter-real-dolar', component: ConverterRealDolarComponent},
+  {path: 'converter-moedas', component: ConverterMoedasComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
