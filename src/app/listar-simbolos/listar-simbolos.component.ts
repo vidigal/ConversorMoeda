@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ListarSimbolosService} from "./listar-simbolos.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 export class Moeda {
   code: String = '';
@@ -16,14 +17,17 @@ export class Moeda {
 export class ListarSimbolosComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) protected paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   moedas: Moeda[] = [];
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['codigo', 'descricao'];
+  displayedColumns: string[] = ['code', 'description'];
 
   constructor(private listarSimbolosService: ListarSimbolosService) {
   }
 
   ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -43,6 +47,15 @@ export class ListarSimbolosComponent implements OnInit, AfterViewInit {
       this.dataSource.data = this.moedas;
     });
 
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }
