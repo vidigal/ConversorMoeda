@@ -1,6 +1,6 @@
 # ConversorMoeda
 
-Conversor de moedas a partir do consumo da api https://api.exchangerate.host/
+Conversor de moedas a partir do consumo da api https://exchangerate.host/
 
 ## Development server
 
