@@ -1,1 +1,49 @@
-<p>converter-moedas works!</p>
+<div class="container">
+  <mat-toolbar>
+    <span>Converter Moeda</span>
+  </mat-toolbar>
+
+  <div class="converter-div">
+    <mat-form-field appearance="fill">
+      <mat-label>Moeda Origem</mat-label>
+      <mat-select required [(value)]="moedaOrigemSelecionada" (selectionChange)="fecharResultado()">
+        <mat-option *ngFor="let moeda of moedas" [value]="moeda.sigla">
+          {{moeda.descricao}} ({{moeda.sigla}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Moeda Destino</mat-label>
+      <mat-select required [(value)]="moedaDestinoSelecionada" (selectionChange)="fecharResultado()">
+        <mat-option *ngFor="let moeda of moedas" [value]="moeda.sigla" change>
+          {{moeda.descricao}} ({{moeda.sigla}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0,00" required
+             [(ngModel)]="valorSelecionado" (change)="fecharResultado()">
+      <span matPrefix>{{moedaOrigemSelecionada}}&nbsp;</span>
+    </mat-form-field>
+    <p>
+      <button mat-raised-button (click)="calcularConversao()">Calcular Conversão</button>
+    </p>
+
+
+    <mat-card *ngIf="exibirResultado">
+      <p>{{valorSelecionado}} em {{moedaOrigemSelecionada}} equivale a</p>
+      <h1><strong>{{valorConvertido}} em {{moedaDestinoSelecionada}}</strong></h1>
+      <p>Taxa de conversão utilizada: {{taxaConversao}}</p>
+
+      <mat-card-actions>
+        <button mat-raised-button (click)="fecharResultado()">Fechar</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </div>
+
+</div>

@@ -58,4 +58,23 @@ export class ListarSimbolosComponent implements OnInit, AfterViewInit {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+  maiorNumero() {
+    let a = 2;    let b = 4;
+    if (a > b) {console.log(a);console.log('o A é maior do que o B');
+    } else { console.log(b);
+      console.log('o B é maior do que o A');
+    }
+  }
+
+
 }
